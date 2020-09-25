@@ -1,52 +1,26 @@
 <div class="row">
   <div class="col-2 m-2">
-    <app-key></app-key>
+    <app-key (status)="onKeySubmit($event)"></app-key>
   </div>
 </div>
-<div class="row">
-  <div class="col-6">
+<hr>
+<div class="p-3" *ngIf="alert">
+  <ngb-alert type="danger" [dismissible]="false">{{alertMsg}}</ngb-alert>
+</div>
+<div class="row" *ngIf="!alert">
+  <div class="col-4 col-lx-3">
     <div class="row">
       <div class="p-5 col">
-        <table class="table">
-          <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Speed</th>
-            <th scope="col">Last update</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <th scope="row">123ABC</th>
-            <td>13 km/h</td>
-            <td>4 min ago</td>
-          </tr>
-          </tbody>
-        </table>
+        <app-fleet></app-fleet>
       </div>
     </div>
     <div class="row">
       <div class="p-5 col">
-        <table class="table">
-          <tbody>
-          <tr>
-            <th scope="row">Total distance</th>
-            <td>65 km</td>
-          </tr>
-          <tr>
-            <th scope="row">Number of stops</th>
-            <td>5</td>
-          </tr>
-          <tr>
-            <th scope="row">Shortest possible distance</th>
-            <td>60 km</td>
-          </tr>
-          </tbody>
-        </table>
+        <app-journey-info></app-journey-info>
       </div>
     </div>
   </div>
-  <div class="col-6">
-    <h1>MAP</h1>
+  <div class="col-8 col-lx-9">
+    <app-map></app-map>
   </div>
 </div>

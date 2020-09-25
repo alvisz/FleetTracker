@@ -1,4 +1,8 @@
-<div class="form-group">
-  <label for="apikey">Api key</label>
-  <input class="form-control" id="apikey" type="text" placeholder="Api key">
-</div>
+<form [formGroup]="keyForm" (ngSubmit)="submit()">
+  <div class="input-group">
+    <input class="form-control" id="apikey" type="text" placeholder="API key" formControlName="key">
+    <div class="input-group-append">
+      <button type="submit" class="btn btn-dark">Save</button>
+    </div>
+  </div>
+</form>

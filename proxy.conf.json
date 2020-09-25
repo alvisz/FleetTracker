@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://app.ecofleet.com/seeme/Api",
+    "secure": false,
+    "changeOrigin": true
+  }
+}
