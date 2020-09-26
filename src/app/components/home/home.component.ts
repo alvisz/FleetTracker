@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FleetService} from '../services/fleet.service';
-import {KeyService} from '../services/key.service';
+import {FleetService} from '../../services/fleet.service';
+import {KeyService} from '../../services/key.service';
 import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
@@ -12,6 +12,9 @@ export class HomeComponent implements OnInit {
 
   alert: boolean = true;
   alertMsg: string = 'No API key provided';
+
+  vehicleSelected: number;
+  journeySelected: boolean = false;
 
   constructor(
     private Key: KeyService,
@@ -38,5 +41,14 @@ export class HomeComponent implements OnInit {
       if (event) this.alert = false;
     }
   }
+
+  OnSelect(objectId: number){
+    this.vehicleSelected = objectId;
+  }
+
+  carSelected(event: boolean){
+    this.journeySelected = !this.journeySelected;
+  }
+
 
 }

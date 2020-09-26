@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {KeyService} from '../services/key.service';
+import {KeyService} from '../../services/key.service';
 
 @Component({
   selector: 'app-key',

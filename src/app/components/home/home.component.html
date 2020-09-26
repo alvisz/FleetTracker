@@ -11,16 +11,16 @@
   <div class="col-4 col-lx-3">
     <div class="row">
       <div class="p-5 col">
-        <app-fleet></app-fleet>
+        <app-fleet (OnSelect)="OnSelect($event)"></app-fleet>
       </div>
     </div>
     <div class="row">
-      <div class="p-5 col">
-        <app-journey-info></app-journey-info>
+      <div class="p-5 col" *ngIf="vehicleSelected">
+        <app-journey-info [objectId]="vehicleSelected" (OnSelect)="carSelected($event)"></app-journey-info>
       </div>
     </div>
   </div>
   <div class="col-8 col-lx-9">
-    <app-map></app-map>
+    <app-map [refresh]="journeySelected"></app-map>
   </div>
 </div>

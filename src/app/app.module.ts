@@ -4,17 +4,19 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HomeComponent } from './home/home.component';
-import { KeyComponent } from './key/key.component';
-import { FleetComponent } from './fleet/fleet.component';
-import { JourneyInfoComponent } from './journey-info/journey-info.component';
-import { MapComponent } from './map/map.component';
+import { HomeComponent } from './components/home/home.component';
+import { KeyComponent } from './components/key/key.component';
+import { FleetComponent } from './components/fleet/fleet.component';
+import { JourneyInfoComponent } from './components/journey-info/journey-info.component';
+import { MapComponent } from './components/map/map.component';
 import {KeyService} from './services/key.service';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {FleetService} from './services/fleet.service';
 import {LocationService} from './services/location.service';
 import {TimeagoModule} from 'ngx-timeago';
+import {AgmCoreModule} from '@agm/core';
+import { SpeedPipe } from './pipes/speed.pipe';
 
 @NgModule({
   declarations: [
@@ -23,15 +25,20 @@ import {TimeagoModule} from 'ngx-timeago';
     KeyComponent,
     FleetComponent,
     JourneyInfoComponent,
-    MapComponent
+    MapComponent,
+    SpeedPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    FormsModule,
     ReactiveFormsModule,
-    TimeagoModule.forRoot()
+    TimeagoModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: ''
+    })
   ],
   providers: [KeyService, FleetService, LocationService],
   bootstrap: [AppComponent]
