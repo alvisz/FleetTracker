@@ -1,9 +1,6 @@
 <agm-map [latitude]="centerLat" [longitude]="centerLon">
-  <ng-container *ngIf="showCurrent">
-    <agm-marker *ngFor="let car of fleet" [latitude]="car.latitude" [longitude]="car.longitude" [label]="car.name"></agm-marker>
-  </ng-container>
-  <ng-container *ngIf="!showCurrent">
-    <agm-marker *ngFor="let stop of stops" [latitude]="stop.latitude" [longitude]="stop.longitude"></agm-marker>
+  <ng-container>
+    <agm-marker *ngFor="let marker of markers" [latitude]="marker.latitude" [longitude]="marker.longitude" [label]="marker?.name"></agm-marker>
     <agm-polyline *ngFor="let point of route;let i = index;"  [strokeColor]="getSpeedColor(point.speed)">
       <agm-polyline-point [latitude]="point.latitude" [longitude]="point.longitude">
       </agm-polyline-point>

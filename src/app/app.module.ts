@@ -37,7 +37,7 @@ import { SpeedPipe } from './pipes/speed.pipe';
     ReactiveFormsModule,
     TimeagoModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: ''
+      apiKey: 'API_KEY'
     })
   ],
   providers: [KeyService, FleetService, LocationService],

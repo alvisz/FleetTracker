@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FleetService} from '../../services/fleet.service';
 import {KeyService} from '../../services/key.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import {MapInterface} from '../../interfaces/MapInterface';
 
 @Component({
   selector: 'app-home',
@@ -10,28 +11,26 @@ import {HttpErrorResponse} from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
 
-  alert: boolean = true;
-  alertMsg: string = 'No API key provided';
+  public alert:            boolean = true;
+  public alertMsg:         string  = 'No API key provided';
 
-  vehicleSelected: number;
-  journeySelected: boolean = false;
+  public vehicleSelected:  number;
+  public journeySelected:  MapInterface;
 
-  constructor(
-    private Key: KeyService,
-    public Fleet: FleetService) { }
+  constructor(private Key: KeyService,
+              public Fleet: FleetService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   async onKeySubmit(event: boolean){
     const API_KEY = this.Key.getKey();
     let fleetData = await this.Fleet.fetchFleet(API_KEY).then(data => {
       if (data.status === 0){
-        return data
+        return data;
       }
     }).catch((err: HttpErrorResponse) => {
       if(err.status === 403){
-        this.alertMsg = "Wrong API key"
+        this.alertMsg = "Wrong API key";
       }
       return null;
     })
@@ -46,8 +45,8 @@ export class HomeComponent implements OnInit {
     this.vehicleSelected = objectId;
   }
 
-  carSelected(event: boolean){
-    this.journeySelected = !this.journeySelected;
+  carSelected(event: MapInterface){
+    this.journeySelected = event;
   }
 
 

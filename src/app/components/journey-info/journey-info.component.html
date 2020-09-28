@@ -5,10 +5,10 @@
     </div>
   </div>
   <button class="btn btn-secondary ml-2" type="submit">Go</button>
+  <button class="btn btn-secondary ml-2" type="button" (click)="showCurrentLocations()">Show fleet current locations</button>
 </form>
-<h5 class="mt-2">Summary for: {{dateSelected | date: 'dd-MM-yyyy'}}</h5>
-
-<table class="table table-striped table-bordered mt-2">
+<h5 class="mt-2" *ngIf="showJourney">Summary for: {{dateSelected | date: 'dd-MM-yyyy'}}</h5>
+<table class="table table-striped table-bordered mt-2" *ngIf="showJourney">
   <tbody>
   <tr>
     <th scope="row">Total distance</th>
@@ -20,7 +20,7 @@
   </tr>
   <tr>
     <th scope="row">Shortest possible distance</th>
-    <td>60 km</td>
+    <td>{{shortestPath}} km</td>
   </tr>
   </tbody>
 </table>

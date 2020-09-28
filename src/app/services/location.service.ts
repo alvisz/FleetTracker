@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {LocationData, LocationDataInterface} from '../interfaces/LocationDataInterface';
 import * as moment from 'moment';
-import {MapFleetInterface} from '../interfaces/MapInterface';
+import {MapInterface} from '../interfaces/MapInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +10,11 @@ import {MapFleetInterface} from '../interfaces/MapInterface';
 export class LocationService {
 
   public Route: [LocationData];
-  public Stops: Array<MapFleetInterface>;
+  public Stops: Array<MapInterface>;
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl: string = '/api/Vehicles/getRawData';
+  private apiUrl: string = '/fleetapi/Vehicles/getRawData';
 
   fetchLocation(apiKey: string, objectId: number, date: Date): Promise<LocationDataInterface> {
     let objectID = objectId.toString();
@@ -38,11 +38,12 @@ export class LocationService {
     return this.Route;
   }
 
-  saveStops(stops: Array<MapFleetInterface>): void{
+  saveStops(stops: Array<MapInterface>): void{
     this.Stops = stops;
   }
 
-  getStops(): Array<MapFleetInterface> {
+
+  getStops(): Array<MapInterface> {
     return this.Stops;
   }
 

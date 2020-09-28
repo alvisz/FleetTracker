@@ -1,27 +1,74 @@
-# FleetTracker
+# Fleet Tracker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.6.
+![UI](./preview.png)
 
-## Development server
+### Getting started
+#### Software requirements
+- [Docker](https://www.docker.com "Docker")
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#### Running the application locally
 
-## Code scaffolding
+Open `FleetTracker/src/app/app.module.ts`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Replace "API_KEY" with your API key from Google Maps API
 
-## Build
+```
+AgmCoreModule.forRoot({
+      apiKey: 'API_KEY'
+})
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Create `.env` file in root directory and provide it with the same API key
 
-## Running unit tests
+```
+GOOGLE_API_KEY=GOOGLEAPIKEYHERE
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To start server:
+```
+docker-compose up -d
+```
+In browser open:
+```
+localhost:80
+```
 
-## Running end-to-end tests
+### Technical info
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Fleet Complete API implementation using Angular.
 
-## Further help
+#### Journey summary
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+When picking a vehicle from fleet, selecting a date, the map draws a route.
+The line changes color, depending on vehicles speed:
+```
+0-50kmh - Blue
+51-90   - Green
+Over 90 - Red
+```
+
+* Total distance calculated using the data from vehicles odometer.
+In case if there is no such information provided, location data is used to calculate total distance using geolib.
+
+* Number of stops calculated by counting intervals where vehicles speed is 0 and taking the first point of it.
+
+#### Additional Express REST API
+
+I didn't find good enough library to use for Google Maps routing service, so I used [this](https://www.npmjs.com/package/@googlemaps/google-maps-services-js "Google maps services") one.
+Because this library only works in backend side, I created Node Express REST API.
+
+By developing it, I discovered that Google Maps API only takes start,end points and 25 waypoints. So it took me some time to create a function that splits every request in chunks of 27.
+
+I observed that in some cases the calculated "shortest path" is a bit longer than the actual route.
+This can be fixed probably by using the real adresses of places where the vehicle did stop.
+
+Technologies used:
+
+* [Angular](https://angular.io/ "Angular")
+    * [NG-Bootstrap](https://ng-bootstrap.github.io/ "NG-Bootstrap")
+    * [Geolib](https://www.npmjs.com/package/geolib "geolib")
+    * [Angular Google Maps](https://angular-maps.com/ "Angular Google Maps")
+* [Node](https://nodejs.org/en/ "Nodejs")
+    * [Expressjs](https://expressjs.com/ "Expressjs")
+    * [Google Maps Library](https://www.npmjs.com/package/@googlemaps/google-maps-services-js "Google maps services")
+* [Docker](https://www.docker.com "Docker")

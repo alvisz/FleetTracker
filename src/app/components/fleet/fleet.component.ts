@@ -10,7 +10,10 @@ import {KeyService} from '../../services/key.service';
 })
 export class FleetComponent implements OnInit {
 
-  @Output() OnSelect: EventEmitter<number> = new EventEmitter<number>()
+  @Output()
+  OnSelect: EventEmitter<number> = new EventEmitter<number>()
+
+  public vehicleSelected: number;
 
   constructor(public Fleet: FleetService,
               public Key: KeyService) {
@@ -22,6 +25,7 @@ export class FleetComponent implements OnInit {
   ngOnInit(): void {}
 
   onClick(objectId: number): void {
+    this.vehicleSelected = objectId;
     this.OnSelect.emit(objectId)
   }
 

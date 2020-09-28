@@ -7,7 +7,7 @@ import {FleetData, FleetInterface} from '../interfaces/FleetInterface';
 })
 export class FleetService {
 
-  private apiUrl: string = '/api/Vehicles/getLastData';
+  private apiUrl: string = '/fleetapi/Vehicles/getLastData';
   private fleet: [FleetData];
 
   constructor(private http: HttpClient) { }

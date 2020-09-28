@@ -15,12 +15,12 @@
       </div>
     </div>
     <div class="row">
-      <div class="p-5 col" *ngIf="vehicleSelected">
+      <div class="p-5 col">
         <app-journey-info [objectId]="vehicleSelected" (OnSelect)="carSelected($event)"></app-journey-info>
       </div>
     </div>
   </div>
   <div class="col-8 col-lx-9">
-    <app-map [refresh]="journeySelected"></app-map>
+    <app-map [data]="journeySelected"></app-map>
   </div>
 </div>

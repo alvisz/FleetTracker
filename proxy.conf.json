@@ -1,5 +1,10 @@
 {
   "/api": {
+    "target": "http://localhost:80/api",
+    "secure": false,
+    "pathRewrite": {"^/api" : ""}
+  },
+  "/fleetapi/*": {
     "target": "https://app.ecofleet.com/seeme/Api",
     "secure": false,
     "changeOrigin": true

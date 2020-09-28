@@ -1,12 +1,12 @@
-export interface MapLineInterface {
+export interface MapInterface {
   longitude: number;
   latitude: number;
-  speed: number;
+  speed?: number;
+  name?: string;
 }
 
-export interface MapFleetInterface {
-  longitude: number;
-  latitude: number;
-  name?: string;
+export interface MapDataInterface {
+  route: Array<MapInterface>;
+  markers: Array<MapInterface>;
 }
 
